@@ -59,6 +59,7 @@ export function useZbarci() {
     const [gameStatus, setGameStatus] = useState<GameStatus>("rolling");
     const [events, setEvents] = useState<GameEvent[]>([]);
     const [showZbarci, setShowZbarci] = useState<{ show: boolean, type: 'zbarci' | 'lost' | 'overstep' | 'win' | null }>({ show: false, type: null });
+    const [comboMessage, setComboMessage] = useState<{ text: string, id: string } | null>(null);
 
     const addEvent = (msg: string, type: GameEvent["type"] = "info") => {
         setEvents(prev => [{ id: Date.now().toString() + Math.random(), message: msg, type }, ...prev].slice(0, 5));
@@ -155,6 +156,25 @@ export function useZbarci() {
             scoringIndices.forEach(idx => {
                 newDice[idx].scoredThisThrow = true;
             });
+
+            // Candy Crush style encouragements
+            const phrases5to20 = ["NICE!", "GOOD!", "SWEET!", "NEAT!", "COOL!"];
+            const phrases25to60 = ["GREAT!", "AWESOME!", "SUPERB!", "TASTY!", "BRILLIANT!"];
+            const phrasesOver60 = ["DIVINE!", "PHENOMENAL!", "SPECTACULAR!", "LEGENDARY!", "UNBELIEVABLE!"];
+
+            let word = "";
+            if (roundPoints >= 5 && roundPoints <= 20) {
+                word = phrases5to20[Math.floor(Math.random() * phrases5to20.length)];
+            } else if (roundPoints >= 25 && roundPoints <= 60) {
+                word = phrases25to60[Math.floor(Math.random() * phrases25to60.length)];
+            } else if (roundPoints > 60) {
+                word = phrasesOver60[Math.floor(Math.random() * phrasesOver60.length)];
+            }
+
+            if (word) {
+                setComboMessage({ text: word, id: Date.now().toString() });
+                setTimeout(() => setComboMessage(null), 1500);
+            }
 
             setCurrentRoundScore(prev => prev + roundPoints);
 
@@ -282,6 +302,7 @@ export function useZbarci() {
         gameStatus,
         events,
         showZbarci,
+        comboMessage,
         canSave,
         projection,
         rollDice,

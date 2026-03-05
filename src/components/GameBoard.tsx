@@ -23,6 +23,7 @@ export function GameBoard() {
         gameStatus,
         events,
         showZbarci,
+        comboMessage,
         canSave,
         projection, // Added projection here
         rollDice,
@@ -184,6 +185,21 @@ export function GameBoard() {
                     </div>
 
                     <AnimatePresence>
+                        {comboMessage && !showZbarci.show && (
+                            <motion.div
+                                key={comboMessage.id}
+                                initial={{ opacity: 0, scale: 0.5, y: -10 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 1.1, y: -20 }}
+                                transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                                className="absolute top-6 z-40 pointer-events-none"
+                            >
+                                <h2 className="text-3xl md:text-4xl font-black text-emerald-400 drop-shadow-[0_0_20px_rgba(16,185,129,0.9)] uppercase tracking-tighter">
+                                    {comboMessage.text}
+                                </h2>
+                            </motion.div>
+                        )}
+
                         {showZbarci.show && showZbarci.type !== "win" && (
                             <motion.div
                                 initial={{ opacity: 0, y: -20, scale: 0.9 }}
