@@ -16,8 +16,6 @@ const io = new Server(httpServer, {
     }
 });
 
-const PORT = 3001;
-
 // In-memory store for game rooms
 const games: Record<string, GameState> = {};
 
@@ -252,6 +250,7 @@ io.on('connection', (socket: Socket) => {
     });
 });
 
-httpServer.listen(3002, "0.0.0.0", () => {
-    console.log(`Zbarci Server running on http://0.0.0.0:3002`);
+const PORT = process.env.PORT || 3002;
+httpServer.listen(PORT, "0.0.0.0", () => {
+    console.log(`Zbarci Server running on http://0.0.0.0:${PORT}`);
 });
