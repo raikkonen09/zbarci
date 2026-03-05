@@ -237,11 +237,21 @@ export function useZbarci() {
         return updatedPlayers;
     }
 
+    const endTurn = useCallback(() => {
+        setCurrentRoundScore(0);
+        setDice([]);
+        setGameStatus("rolling");
+        setShowZbarci({ show: false, type: null });
+        setCurrentPlayerIndex((prev) => (prev + 1) % players.length);
+    }, [players.length, setCurrentRoundScore, setDice, setGameStatus, setShowZbarci, setCurrentPlayerIndex]);
+
     const savePoints = useCallback(() => {
         if (!canSave) {
             addEvent("Cannot save when in Threshold!", "danger");
             return;
         }
+
+        const totalAdded = projection.score - currentPlayer.score;
 
         setPlayers((prev) => {
             let newPlayers = [...prev.map(p => ({ ...p }))];
@@ -249,16 +259,10 @@ export function useZbarci() {
             return newPlayers;
         });
 
-        endTurn();
-    }, [currentPlayerIndex, currentRoundScore, canSave]);
+        addEvent(`${currentPlayer.name} BANKED +${totalAdded} points!`, "success");
 
-    const endTurn = useCallback(() => {
-        setCurrentRoundScore(0);
-        setDice([]);
-        setGameStatus("rolling");
-        setShowZbarci({ show: false, type: null });
-        setCurrentPlayerIndex((prev) => (prev + 1) % players.length);
-    }, [players.length]);
+        endTurn();
+    }, [currentPlayerIndex, currentRoundScore, canSave, currentPlayer.name, projection.score, currentPlayer.score, addEvent, endTurn, setPlayers]);
 
     const resetGame = () => {
         setPlayers(prev => prev.map(p => ({ ...p, score: 0 })));

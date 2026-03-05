@@ -201,11 +201,12 @@ export function GameBoard() {
 
                         {showZbarci.show && showZbarci.type === "win" && (
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-emerald-950/90 backdrop-blur-md rounded-2xl"
+                                initial={{ opacity: 0, y: -20, scale: 0.9 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                                className="absolute top-6 z-50 pointer-events-none bg-slate-900/90 px-8 py-3 rounded-full border-2 border-emerald-500/50 backdrop-blur-md shadow-[0_4px_30px_rgba(16,185,129,0.5)] flex items-center justify-center"
                             >
-                                <h1 className="text-4xl md:text-6xl font-black text-white drop-shadow-[0_0_40px_rgba(16,185,129,1)] uppercase tracking-tighter rotate-[-5deg] text-center mb-6">
+                                <h1 className="text-2xl md:text-3xl font-black text-emerald-400 uppercase tracking-widest text-center leading-none m-0">
                                     {currentPlayer.name} WINS!
                                 </h1>
                             </motion.div>
@@ -239,9 +240,11 @@ export function GameBoard() {
             <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-4">
 
                 {/* LIVE FEED (Col 1) */}
-                <div className="lg:col-span-1 glass-panel rounded-2xl p-4 h-32 sm:h-43 overflow-y-auto flex flex-col gap-2 ring-1 ring-slate-800 relative scroll-smooth">
-                    <h3 className="text-xs text-slate-500 font-bold uppercase tracking-widest sticky top-0 bg-slate-900/80 backdrop-blur-md pb-2 z-10 w-full">Live Feed</h3>
-                    <div className="flex flex-col gap-2 flex-grow">
+                <div className="lg:col-span-1 glass-panel rounded-2xl h-32 sm:h-40 flex flex-col ring-1 ring-slate-800 relative overflow-hidden">
+                    <div className="bg-slate-900/80 backdrop-blur-md px-4 py-2 border-b border-slate-700/50 z-10 w-full shrink-0">
+                        <h3 className="text-xs text-slate-500 font-bold uppercase tracking-widest">Live Feed</h3>
+                    </div>
+                    <div className="flex flex-col gap-2 flex-grow overflow-y-auto scroll-smooth p-4 pt-2">
                         <AnimatePresence initial={false}>
                             {events.map((ev) => (
                                 <motion.div
@@ -272,6 +275,9 @@ export function GameBoard() {
                             <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-1">Potential Total</p>
                             <div className={`text-4xl lg:text-5xl font-black tracking-tighter drop-shadow-xl leading-none ${currentRoundScore > 0 && !canSave ? "text-red-500" : "text-blue-400"}`}>
                                 {currentRoundScore > 0 ? projection.score : currentPlayer.score}
+                            </div>
+                            <div className="text-[10px] text-slate-500 font-bold mt-1.5 uppercase tracking-wider">
+                                {1000 - (currentRoundScore > 0 ? projection.score : currentPlayer.score)}m TO FINISH
                             </div>
                             {currentRoundScore > 0 && projection.overtakes.length > 0 && canSave && (
                                 <motion.div
