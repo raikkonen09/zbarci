@@ -1,0 +1,38 @@
+
+> server@1.0.0 dev
+> nodemon src/index.ts
+
+[33m[nodemon] 3.1.14[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: ts,json[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+Zbarci Server running on http://0.0.0.0:3002
+User connected: j003DgxSu0AxyiqIAAAB
+Socket j003DgxSu0AxyiqIAAAB trying to join room PUBLIC as BUBU
+Sending game_state_update to j003DgxSu0AxyiqIAAAB with 1 players.
+User connected: IYmDaBXXBqDUVrQlAAAD
+Socket IYmDaBXXBqDUVrQlAAAD trying to join room public as asdsfafs
+Sending game_state_update to IYmDaBXXBqDUVrQlAAAD with 1 players.
+User connected: trVeTpU01vqAPNiPAAAF
+Socket trVeTpU01vqAPNiPAAAF trying to join room BOGDAN as BABABA
+Sending game_state_update to trVeTpU01vqAPNiPAAAF with 1 players.
+User connected: AstCsxa9ZQ6r3AqTAAAH
+Socket AstCsxa9ZQ6r3AqTAAAH trying to join room BOTROOM as AgentTest
+Sending game_state_update to AstCsxa9ZQ6r3AqTAAAH with 1 players.
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+Zbarci Server running on http://0.0.0.0:3002
+User connected: W8Lmsj6pRW4nzOjAAAAB
+User connected: jXdMut3gpIMLAgIDAAAD
+User connected: TS8HbW-BepCBqCFXAAAF
+User connected: De1gB0-Z6omXfs3gAAAH
+User disconnected: jXdMut3gpIMLAgIDAAAD
+User disconnected: TS8HbW-BepCBqCFXAAAF
+User connected: QzXPvAWt9FvEU6FqAAAJ
+Socket QzXPvAWt9FvEU6FqAAAJ trying to join room PUBLIC as MAMA
+Sending game_state_update to QzXPvAWt9FvEU6FqAAAJ with 1 players.
+User connected: _GnDHUDxR7v851DWAAAL
+Socket _GnDHUDxR7v851DWAAAL trying to join room PUBLIC as tata
+Sending game_state_update to _GnDHUDxR7v851DWAAAL with 2 players.
+User disconnected: _GnDHUDxR7v851DWAAAL

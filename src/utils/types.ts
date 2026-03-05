@@ -1,5 +1,6 @@
 export type Player = {
-    id: number;
+    id: number | string;
+    socketId?: string;
     name: string;
     score: number;
     color: string;

@@ -1,0 +1,5 @@
+src/index.ts(1,21): error TS7016: Could not find a declaration file for module 'express'. '/Users/bogdan.blaga/node_modules/express/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/express` if it exists or add a new declaration (.d.ts) file containing `declare module 'express';`
+src/index.ts(3,32): error TS2307: Cannot find module 'socket.io' or its corresponding type declarations.
+src/index.ts(4,18): error TS7016: Could not find a declaration file for module 'cors'. '/Users/bogdan.blaga/node_modules/cors/lib/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/cors` if it exists or add a new declaration (.d.ts) file containing `declare module 'cors';`

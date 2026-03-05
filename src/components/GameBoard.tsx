@@ -13,7 +13,12 @@ const THRESHOLDS = [
     { start: 800, end: 900, label: "Danger Zone 3" },
 ];
 
-export function GameBoard() {
+interface GameBoardProps {
+    initialPlayerName?: string;
+    initialRoomId?: string;
+}
+
+export function GameBoard({ initialPlayerName = "Guest", initialRoomId = "public" }: GameBoardProps) {
     const [showRules, setShowRules] = useState(false);
     const {
         players,
@@ -25,12 +30,20 @@ export function GameBoard() {
         showZbarci,
         comboMessage,
         canSave,
-        projection, // Added projection here
+        projection,
+        isMyTurn, // Added isMyTurn here
         rollDice,
         savePoints,
         endTurn,
-        resetGame
-    } = useZbarci();
+        resetGame,
+        setPlayerName,
+        setRoomId
+    } = useZbarci(initialPlayerName, initialRoomId);
+
+    useEffect(() => {
+        setPlayerName(initialPlayerName);
+        setRoomId(initialRoomId);
+    }, [initialPlayerName, initialRoomId, setPlayerName, setRoomId]);
 
     const eventsEndRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
@@ -316,35 +329,31 @@ export function GameBoard() {
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-end w-full">
-
-                        <button
-                            onClick={handleRoll}
-                            disabled={showZbarci.show || showZbarci.type === 'win'}
-                            className="px-6 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 active:scale-95 transition-all text-sm sm:text-lg font-black uppercase tracking-widest shadow-[0_0_20px_rgba(37,99,235,0.4)] disabled:opacity-50 disabled:active:scale-100 disabled:cursor-not-allowed flex-grow cursor-pointer"
-                        >
-                            {dice.length === 0 ? "START TURN!" : "ROLL REMAINING"}
-                        </button>
-
-                        <div className="flex-shrink-0 min-w-[120px] w-full sm:w-auto">
-                            <AnimatePresence>
-                                {dice.length > 0 && currentRoundScore > 0 && !showZbarci.show && (
-                                    <motion.button
-                                        initial={{ opacity: 0, scale: 0.8, x: 20 }}
-                                        animate={{ opacity: 1, scale: 1, x: 0 }}
-                                        exit={{ opacity: 0, scale: 0.8, x: 20 }}
-                                        onClick={savePoints}
-                                        disabled={!canSave}
-                                        className={`rounded-xl transition-all px-4 py-4 font-black uppercase tracking-widest border-b-4 active:border-b-0 active:translate-y-1 w-full text-sm sm:text-base
-                        ${canSave
-                                                ? "bg-emerald-600 border-emerald-800 hover:bg-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.3)] text-white"
-                                                : "bg-slate-800 border-slate-900 text-slate-500 cursor-not-allowed opacity-50 shadow-none"
-                                            }
-                        `}
-                                    >
-                                        BANK IT
-                                    </motion.button>
-                                )}
-                            </AnimatePresence>
+                        {/* Active Controls */}
+                        {!isMyTurn && (
+                            <div className="col-span-2 text-center text-amber-500 font-bold uppercase tracking-widest text-sm animate-pulse mb-2">
+                                WAITING FOR {currentPlayer.name}...
+                            </div>
+                        )}
+                        <div className="grid grid-cols-2 gap-4 w-full">
+                            <button
+                                onClick={handleRoll}
+                                disabled={!isMyTurn || showZbarci.show}
+                                className={`
+                                py-4 rounded-xl font-bold uppercase tracking-widest transition-all
+                                disabled:opacity-50 disabled:cursor-not-allowed
+                                ${gameStatus === "rolling" ? "bg-amber-500 hover:bg-amber-400 text-white shadow-[0_0_20px_rgba(245,158,11,0.5)]" : "bg-slate-700 text-white hover:bg-slate-600"}
+                            `}
+                            >
+                                {(gameStatus === "won" || gameStatus === "lost" || gameStatus === "zbarci") ? "NEXT TURN" : (dice.length === 0 ? "ROLL START" : "ROLL REMAINING")}
+                            </button>
+                            <button
+                                onClick={savePoints}
+                                disabled={!isMyTurn || !canSave || showZbarci.show}
+                                className="py-4 rounded-xl font-bold uppercase tracking-widest bg-emerald-600 hover:bg-emerald-500 text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(16,185,129,0.4)]"
+                            >
+                                BANK IT
+                            </button>
                         </div>
                     </div>
 

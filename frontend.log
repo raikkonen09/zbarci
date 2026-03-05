@@ -1,0 +1,75 @@
+
+> zbarci-remake@0.1.0 dev
+> next dev
+
+⚠ Invalid next.config.ts options detected: 
+⚠     Unrecognized key(s) in object: 'turbo' at "experimental"
+⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.100.39:3000
+- Experiments (use with caution):
+  ? turbo (invalid experimental key)
+
+✓ Starting...
+✓ Ready in 1915ms
+ GET /play 200 in 1732ms (compile: 1657ms, render: 75ms)
+ GET /meta.json 404 in 190ms (compile: 168ms, render: 23ms)
+ HEAD /play 200 in 15ms (compile: 3ms, render: 12ms)
+ GET / 200 in 275ms (compile: 247ms, render: 28ms)
+ GET /play 200 in 26ms (compile: 8ms, render: 18ms)
+ GET /play 200 in 21ms (compile: 3ms, render: 18ms)
+ GET / 200 in 27ms (compile: 4ms, render: 23ms)
+ GET /play 200 in 27ms (compile: 8ms, render: 19ms)
+ GET /meta.json 404 in 24ms (compile: 3ms, render: 21ms)
+ GET /play 200 in 33ms (compile: 9ms, render: 24ms)
+ GET /meta.json 404 in 17ms (compile: 3ms, render: 14ms)
+ GET / 200 in 22ms (compile: 6ms, render: 16ms)
+ GET /play 200 in 18ms (compile: 8ms, render: 10ms)
+ GET /play 200 in 28ms (compile: 8ms, render: 21ms)
+ GET /meta.json 404 in 15ms (compile: 2ms, render: 13ms)
+✓ Compiled in 28ms
+ GET /play 200 in 133ms (compile: 53ms, render: 80ms)
+ GET /play 200 in 31ms (compile: 9ms, render: 22ms)
+ GET /meta.json 404 in 17ms (compile: 2ms, render: 15ms)
+ GET / 200 in 29ms (compile: 6ms, render: 23ms)
+ GET /play 200 in 19ms (compile: 7ms, render: 12ms)
+ GET /play 200 in 31ms (compile: 9ms, render: 22ms)
+ GET /meta.json 404 in 20ms (compile: 3ms, render: 18ms)
+ GET /meta.json 404 in 17ms (compile: 4ms, render: 13ms)
+ GET /play 200 in 46ms (compile: 18ms, render: 29ms)
+ GET /play 200 in 27ms (compile: 6ms, render: 21ms)
+ GET /meta.json 404 in 17ms (compile: 3ms, render: 15ms)
+ GET / 200 in 30ms (compile: 7ms, render: 23ms)
+ GET /meta.json 404 in 16ms (compile: 3ms, render: 14ms)
+ GET /meta.json 404 in 22ms (compile: 5ms, render: 18ms)
+ GET /play 200 in 17ms (compile: 7ms, render: 10ms)
+ GET / 200 in 19ms (compile: 4ms, render: 15ms)
+ GET /play 200 in 21ms (compile: 8ms, render: 13ms)
+ GET /play 200 in 26ms (compile: 6ms, render: 20ms)
+ GET /meta.json 404 in 15ms (compile: 3ms, render: 13ms)
+ GET /play 200 in 30ms (compile: 7ms, render: 23ms)
+ GET /meta.json 404 in 20ms (compile: 1619µs, render: 18ms)
+ GET /play 200 in 29ms (compile: 8ms, render: 20ms)
+ GET / 200 in 26ms (compile: 6ms, render: 20ms)
+ GET /play 200 in 17ms (compile: 7ms, render: 10ms)
+ GET /play 200 in 33ms (compile: 7ms, render: 26ms)
+ GET /meta.json 404 in 23ms (compile: 5ms, render: 18ms)
+ GET /play 200 in 21ms (compile: 4ms, render: 17ms)
+✓ Compiled in 30ms
+ GET /play 200 in 121ms (compile: 48ms, render: 73ms)
+✓ Compiled in 11ms
+✓ Compiled in 12ms
+ GET /meta.json 404 in 29ms (compile: 5ms, render: 24ms)
+ GET /play 200 in 127ms (compile: 54ms, render: 73ms)
+ GET /play 200 in 23ms (compile: 5ms, render: 18ms)
+ GET /meta.json 404 in 21ms (compile: 4ms, render: 17ms)
+ GET / 200 in 26ms (compile: 4ms, render: 22ms)
+ GET /play 200 in 11ms (compile: 3ms, render: 8ms)
+✓ Compiled in 22ms
+ GET /play 200 in 133ms (compile: 45ms, render: 89ms)
+ GET /meta.json 404 in 17ms (compile: 3ms, render: 14ms)
+ GET /meta.json 404 in 28ms (compile: 5ms, render: 23ms)
+ GET /meta.json 404 in 24ms (compile: 5ms, render: 19ms)
+ GET /play 200 in 26ms (compile: 6ms, render: 20ms)
+ GET /meta.json 404 in 63ms (compile: 25ms, render: 38ms)
