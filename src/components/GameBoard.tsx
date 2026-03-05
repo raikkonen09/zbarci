@@ -6,6 +6,7 @@ import { Info, Medal } from "lucide-react";
 import { useZbarci } from "@/hooks/useZbarci";
 import { Dice } from "@/components/Dice";
 import { RulesModal } from "@/components/RulesModal";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 const THRESHOLDS = [
     { start: 0, end: 100, label: "Danger Zone 1" },
@@ -19,6 +20,7 @@ interface GameBoardProps {
 }
 
 export function GameBoard({ initialPlayerName = "Guest", initialRoomId = "public" }: GameBoardProps) {
+    const playSound = useSoundEffects();
     const [showRules, setShowRules] = useState(false);
     const {
         players,
@@ -60,9 +62,25 @@ export function GameBoard({ initialPlayerName = "Guest", initialRoomId = "public
     }, [showZbarci, endTurn]);
 
     const handleRoll = () => {
+        playSound('roll');
         const isNewTurn = dice.length === 0;
         rollDice(isNewTurn);
     };
+
+    const handleBank = () => {
+        playSound('bank');
+        savePoints();
+    };
+
+    useEffect(() => {
+        if (showZbarci.show) {
+            if (showZbarci.type === "zbarci" || showZbarci.type === "lost" || showZbarci.type === "overstep") {
+                playSound('zbarci');
+            } else if (showZbarci.type === "win") {
+                playSound('win');
+            }
+        }
+    }, [showZbarci.show, showZbarci.type, playSound]);
 
     const calculateLeftOffset = (score: number) => {
         return `${Math.max(0, Math.min((score / 1000) * 100, 100))}%`;
@@ -348,7 +366,7 @@ export function GameBoard({ initialPlayerName = "Guest", initialRoomId = "public
                                 {(gameStatus === "won" || gameStatus === "lost" || gameStatus === "zbarci") ? "NEXT TURN" : (dice.length === 0 ? "ROLL START" : "ROLL REMAINING")}
                             </button>
                             <button
-                                onClick={savePoints}
+                                onClick={handleBank}
                                 disabled={!isMyTurn || !canSave || showZbarci.show}
                                 className="py-4 rounded-xl font-bold uppercase tracking-widest bg-emerald-600 hover:bg-emerald-500 text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(16,185,129,0.4)]"
                             >

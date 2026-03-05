@@ -73,3 +73,29 @@
  GET /meta.json 404 in 24ms (compile: 5ms, render: 19ms)
  GET /play 200 in 26ms (compile: 6ms, render: 20ms)
  GET /meta.json 404 in 63ms (compile: 25ms, render: 38ms)
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.100.39:3000
+
+✓ Starting...
+✓ Ready in 1062ms
+ GET /play 200 in 998ms (compile: 810ms, render: 188ms)
+ GET /play 200 in 993ms (compile: 782ms, render: 211ms)
+ GET /play 200 in 146ms (compile: 5ms, render: 141ms)
+ GET /play 200 in 149ms (compile: 21ms, render: 129ms)
+ GET /play 200 in 115ms (compile: 6ms, render: 109ms)
+ GET /play 200 in 111ms (compile: 15ms, render: 95ms)
+ GET /meta.json 404 in 200ms (compile: 102ms, render: 98ms)
+ GET /meta.json 404 in 80ms (compile: 7ms, render: 74ms)
+ GET /meta.json 404 in 55ms (compile: 4ms, render: 50ms)
+ GET /meta.json 404 in 32ms (compile: 9ms, render: 23ms)
+✓ Compiled in 53ms
+✓ Compiled in 23ms
+✓ Compiled in 42ms
+ GET / 200 in 64ms (compile: 29ms, render: 35ms)
+ GET /meta.json 404 in 33ms (compile: 4ms, render: 29ms)
+ GET /meta.json 404 in 14ms (compile: 1281µs, render: 13ms)
+ GET /meta.json 404 in 19ms (compile: 4ms, render: 15ms)
+ GET /play 200 in 42ms (compile: 32ms, render: 10ms)
+✓ Compiled in 11ms
