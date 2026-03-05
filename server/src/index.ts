@@ -250,7 +250,7 @@ io.on('connection', (socket: Socket) => {
     });
 });
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3002;
 httpServer.listen(PORT, "0.0.0.0", () => {
     console.log(`Zbarci Server running on http://0.0.0.0:${PORT}`);
 });
