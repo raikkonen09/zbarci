@@ -7,6 +7,7 @@ export interface Player {
     score: number;
     color: string;
     isReady?: boolean;
+    isBot?: boolean;
 }
 
 export interface DiceData {

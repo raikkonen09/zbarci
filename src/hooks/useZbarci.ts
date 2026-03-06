@@ -17,12 +17,13 @@ interface GameState {
 const SOCKET_SERVER_URL = process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3002";
 let socketInstance: Socket | null = null;
 
-export function useZbarci(initialPlayerName: string = "Guest", initialRoomId: string = "PUBLIC") {
-    console.log("useZbarci hook called!", { initialPlayerName, initialRoomId });
+export function useZbarci(initialPlayerName: string = "Guest", initialRoomId: string = "PUBLIC", initialBotCount: number = 0) {
+    console.log("useZbarci hook called!", { initialPlayerName, initialRoomId, initialBotCount });
     const [socket, setSocket] = useState<Socket | null>(null);
     const [gameState, setGameState] = useState<GameState | null>(null);
     const [roomId, setRoomId] = useState<string>(initialRoomId);
     const [playerName, setPlayerName] = useState<string>(initialPlayerName);
+    const [botCount, setBotCount] = useState<number>(initialBotCount);
 
     useEffect(() => {
         console.log("useZbarci useEffect mounted!");
@@ -38,8 +39,8 @@ export function useZbarci(initialPlayerName: string = "Guest", initialRoomId: st
         setSocket(socketInstance);
 
         const handleConnect = () => {
-            console.log("Connected to Zbarci Server, joining room: ", roomId);
-            socketInstance?.emit("join_room", { roomId, playerName });
+            console.log("Connected to Zbarci Server, joining room: ", roomId, "bots:", botCount);
+            socketInstance?.emit("join_room", { roomId, playerName, botCount });
         };
 
         socketInstance.on("connect", handleConnect);

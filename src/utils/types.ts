@@ -4,6 +4,7 @@ export type Player = {
     name: string;
     score: number;
     color: string;
+    isBot?: boolean;
 };
 
 export type DiceData = {

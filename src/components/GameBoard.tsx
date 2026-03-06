@@ -17,9 +17,10 @@ const THRESHOLDS = [
 interface GameBoardProps {
     initialPlayerName?: string;
     initialRoomId?: string;
+    initialBotCount?: number;
 }
 
-export function GameBoard({ initialPlayerName = "Guest", initialRoomId = "public" }: GameBoardProps) {
+export function GameBoard({ initialPlayerName = "Guest", initialRoomId = "public", initialBotCount = 0 }: GameBoardProps) {
     const playSound = useSoundEffects();
     const [showRules, setShowRules] = useState(false);
     const {
@@ -40,7 +41,7 @@ export function GameBoard({ initialPlayerName = "Guest", initialRoomId = "public
         resetGame,
         setPlayerName,
         setRoomId
-    } = useZbarci(initialPlayerName, initialRoomId);
+    } = useZbarci(initialPlayerName, initialRoomId, initialBotCount);
 
     useEffect(() => {
         setPlayerName(initialPlayerName);
@@ -55,11 +56,13 @@ export function GameBoard({ initialPlayerName = "Guest", initialRoomId = "public
     useEffect(() => {
         if (showZbarci.show && (showZbarci.type === "zbarci" || showZbarci.type === "lost" || showZbarci.type === "overstep")) {
             const timer = setTimeout(() => {
-                endTurn();
+                if (isMyTurn) {
+                    endTurn();
+                }
             }, 3500);
             return () => clearTimeout(timer);
         }
-    }, [showZbarci, endTurn]);
+    }, [showZbarci, endTurn, isMyTurn]);
 
     const handleRoll = () => {
         playSound('roll');

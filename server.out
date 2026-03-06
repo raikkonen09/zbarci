@@ -1,0 +1,12 @@
+
+> server@1.0.0 dev
+> nodemon src/index.ts
+
+[33m[nodemon] 3.1.14[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: ts,json[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+Zbarci Server running on http://0.0.0.0:3002
+User connected: Gj9DbNnXThmtKeF3AAAB
+Socket Gj9DbNnXThmtKeF3AAAB trying to join room SP-HJBTLR as Test with 3 bots.
